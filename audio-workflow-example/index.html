@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -43,6 +43,7 @@
       const width = 700,
         height = 600,
         radius = 250;
+
       const svg = d3
         .select("#radar")
         .attr("viewBox", `0 0 ${width} ${height}`)
@@ -58,16 +59,21 @@
       const angleSlice = (2 * Math.PI) / features.length;
 
       d3.json("audio_feature_summary.json").then((data) => {
-        const allValues = data.flatMap((d) =>
-          features.map((f) => Math.abs(d[f]))
+        const extentByFeature = new Map(
+          features.map((f) => [f, d3.extent(data, (d) => Math.abs(d[f]))]),
         );
-        const globalMax = d3.max(allValues) || 1;
+
+        const normalize = (f, v) => {
+          const [min, max] = extentByFeature.get(f);
+          if (max === min) return 0.5;
+          return (Math.abs(v) - min) / (max - min);
+        };
 
         const normalized = data.map((d) => ({
           file: d.file,
           values: features.map((f) => ({
             axis: f,
-            value: Math.abs(d[f]) / globalMax,
+            value: normalize(f, d[f]),
           })),
         }));
 
@@ -86,8 +92,8 @@
 
           svg
             .append("text")
-            .attr("x", x * 1.1)
-            .attr("y", y * 1.1)
+            .attr("x", x * 1.12)
+            .attr("y", y * 1.12)
             .attr("text-anchor", "middle")
             .attr("class", "axisLabel")
             .text(feature);
@@ -123,6 +129,7 @@
             const r = d.value * radius;
             const x = r * Math.cos(angle);
             const y = r * Math.sin(angle);
+
             svg
               .append("circle")
               .attr("cx", x)
