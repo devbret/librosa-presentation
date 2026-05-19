@@ -2,127 +2,64 @@
 
 ![Screenshot of the primary chart UI.](https://hosting.photobucket.com/bbcfb0d4-be20-44a0-94dc-65bff8947cf2/c50b15f6-4ce6-42b3-b18e-3baf5ae98e1d.png)
 
-This repo demonstrates how to extract audio features from `.wav` and `.mp3` files using the [Librosa](https://librosa.org/) Python library and visualize the results with a D3.js radar chart in the browser.
+Extracts audio features from `.wav` and `.mp3` files, exporting them as JSON and visualizing track comparisons with a radar chart.
 
-## Project Structure
+## Overview
 
-Below is a simple outline of how this project is structured.
+Analyzes audio files placed in the `audio` directory and extracts key characteristics such as tempo, average beat time, chroma intensity and MFCC values. The extracted data is saved as structured JSON, making it useful for comparing multiple audio tracks in a D3 visualization.
 
-```
-├── audio/
-│ ├── info.txt
-│ ├── demo.wav
-│ ├── demo.mp3
-│ └── ...
-├── audio-workflow-example/
-│ ├── app.py
-│ └── index.html
-├── feature-extraction-example/
-│ └── app.py
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
+The main workflow centers on `audio-workflow-example/app.py`, which processes the audio files and prepares the data for `index.html`, where D3.js displays the results as a radar chart. Each audio file is represented as a polygon, allowing users to visually compare audio features across tracks.
 
-## Purpose
+## Set Up Instructions
 
-The purpose of this repo is to highlight how Librosa can be used to:
+Below are the required software programs and instructions for using this application on a Linux machine.
 
-- Extract meaningful audio features
+### Programs Needed
 
-- Structure the results for multi-track comparison
+- [Git](https://git-scm.com/downloads)
 
-- Export the data as JSON
+- [Python](https://www.python.org/downloads/)
 
-- Visualize the results with an interactive radar chart using D3.js
+### Steps
 
-## Scripts
+1. Install the above programs
 
-This project includes two Python scripts which demonstrate how to analyze audio files using Librosa. Each script extracts key audio features and outputs structured data for further analysis and visualization.
+2. Open a terminal
 
-### `audio-workflow-example/app.py`
+3. Clone this repository: `git clone git@github.com:devbret/librosa-presentation.git`
 
-- Loads all `.mp3` and `.wav` files in the `../audio/` directory
+4. Navigate to the repo's directory: `cd librosa-presentation`
 
-- Extracts:
-  - Tempo (BPM)
+5. Create a virtual environment: `python3 -m venv venv`
 
-  - Average beat time
+6. Activate your virtual environment: `source venv/bin/activate`
 
-  - Average chroma intensity
+7. Install the needed dependencies: `pip install -r requirements.txt`
 
-  - Average MFCC value
+8. Place `.wav` and/or `.mp3` files inside the `audio` directory.
 
-- Saves the result in `audio_feature_summary.json` for visualization
+9. Run the feature extraction script: `python3 audio-workflow-example/app.py`
 
-### `audio-workflow-example/index.html`
+10. Open another terminal
 
-- Uses D3.js to load and visualize `audio_feature_summary.json` as a radar chart
+11. Navigate to the repo's subdirectory: `cd librosa-presentation/audio-workflow-example`
 
-- Each polygon represents one audio file
+12. Launch a local `HTTP` server: `python3 -m http.server`
 
-- The chart compares the four normalized features across multiple files
+13. Open the local app in your browser: `http://localhost:8000`
 
-### `feature-extraction-example/app.py`
+14. When finished exploring, stop the `HTTP` server: `CTRL + C`
 
-- A simplified version of the workflow
+15. Exit the virtual environment: `deactivate`
 
-- Also extracts features but omits beat timing
+## Other Considerations
 
-- Good for quick tests or demonstrations
+This project repo is intended to demonstrate an ability to do the following:
 
-## Usage Instructions
+- Extract meaningful audio features from `.wav` and `.mp3` files using Librosa
 
-What follows are the required setup instructions for using this program:
+- Convert audio analysis results into structured JSON for later reuse
 
-1. Clone the repo from GitHub by entering the following command into a Linux terminal:
+- Compare multiple audio tracks through a D3 radar chart
 
-```
-git clone git@github.com:devbret/librosa-presentation.git
-```
-
-2. Open/enter the newly created repo directory:
-
-```
-cd librosa-presentation
-```
-
-3. Create a virtual environment:
-
-```
-python3 -m venv venv
-```
-
-4. Activate the virtual environment:
-
-```
-source venv/bin/activate
-```
-
-5. Install the needed packages:
-
-```
-pip install -r requirements.txt
-```
-
-6. Place `.wav` and/or `.mp3` audio files inside the `audio/` directory.
-
-7. Run the feature extraction script:
-
-```
-python3 audio-workflow-example/app.py
-```
-
-8. Open `audio-workflow-example/index.html` in your browser to view the radar chart.
-
-## Acknowledgments
-
-- [Librosa](https://librosa.org/) for audio analysis
-
-- [D3.js](https://d3js.org/) for interactive data visualization
-
-- Example audio files provided under open licenses
-
-## License
-
-This project is open source and freely available for use.
+If you have any questions or would like to collaborate, please reach out either on GitHub or via [my website](https://bretbernhoft.com/).
