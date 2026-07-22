@@ -1,16 +1,16 @@
 # Librosa Presentation Code
 
-![Screenshot of the primary chart UI.](https://hosting.photobucket.com/bbcfb0d4-be20-44a0-94dc-65bff8947cf2/c50b15f6-4ce6-42b3-b18e-3baf5ae98e1d.png)
+![Screenshot of the primary chart UI.](https://hosting.photobucket.com/bbcfb0d4-be20-44a0-94dc-65bff8947cf2/e1809f3a-479d-4f22-a564-3c2085abd0d5.png)
 
 Extracts audio features from `.wav` and `.mp3` files, exporting them as JSON and visualizing track comparisons with a radar chart.
 
-## Overview
+## Application Overview
 
 Analyzes audio files placed in the `audio` directory and extracts key characteristics such as tempo, average beat time, chroma intensity and MFCC values. The extracted data is saved as structured JSON, making it useful for comparing multiple audio tracks in a D3 visualization.
 
-The main workflow centers on `audio-workflow-example/app.py`, which processes the audio files and prepares the data for `index.html`, where D3.js displays the results as a radar chart. Each audio file is represented as a polygon, allowing users to visually compare audio features across tracks.
+The main workflow centers on `app.py`, which processes the audio files and prepares the data for `index.html`, where D3.js displays the results as a radar chart. Each audio file is represented as a polygon, allowing users to visually compare audio features across tracks.
 
-## Set Up Instructions
+## Basic Setup Instructions
 
 Below are the required software programs and instructions for using this application on a Linux machine.
 
@@ -38,19 +38,15 @@ Below are the required software programs and instructions for using this applica
 
 8. Place `.wav` and/or `.mp3` files inside the `audio` directory.
 
-9. Run the feature extraction script: `python3 audio-workflow-example/app.py`
+9. Run the feature extraction script: `python3 app.py`
 
-10. Open another terminal
+10. Launch a local web server: `python3 -m http.server`
 
-11. Navigate to the repo's subdirectory: `cd librosa-presentation/audio-workflow-example`
+11. Open the app in your browser: `http://localhost:8000`
 
-12. Launch a local `HTTP` server: `python3 -m http.server`
+12. When finished, stop the web server: `CTRL + C`
 
-13. Open the local app in your browser: `http://localhost:8000`
-
-14. When finished exploring, stop the `HTTP` server: `CTRL + C`
-
-15. Exit the virtual environment: `deactivate`
+13. Exit the virtual environment: `deactivate`
 
 ## Other Considerations
 

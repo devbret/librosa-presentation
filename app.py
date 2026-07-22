@@ -4,7 +4,7 @@ import json
 import os
 from glob import glob
 
-audio_dir = '../audio'
+audio_dir = './audio'
 audio_files = glob(os.path.join(audio_dir, '*.mp3')) + glob(os.path.join(audio_dir, '*.wav'))
 
 if not audio_files:
@@ -30,7 +30,7 @@ for audio_path in audio_files:
 
         summary = {
             "file": os.path.basename(audio_path),
-            "tempo": float(tempo),
+            "tempo": float(np.atleast_1d(tempo)[0]),
             "avg_beat_time": avg_beat_time,
             "avg_chroma_intensity": avg_chroma,
             "avg_mfcc_value": avg_mfcc
