@@ -19,13 +19,13 @@ const angleSlice = (2 * Math.PI) / features.length;
 
 d3.json("audio_feature_summary.json").then((data) => {
   const extentByFeature = new Map(
-    features.map((f) => [f, d3.extent(data, (d) => Math.abs(d[f]))]),
+    features.map((f) => [f, d3.extent(data, (d) => d[f])]),
   );
 
   const normalize = (f, v) => {
     const [min, max] = extentByFeature.get(f);
     if (max === min) return 0.5;
-    return (Math.abs(v) - min) / (max - min);
+    return (v - min) / (max - min);
   };
 
   const normalized = data.map((d) => ({

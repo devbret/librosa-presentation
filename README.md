@@ -1,6 +1,6 @@
 # Librosa Presentation Code
 
-![Screenshot of the primary chart UI.](https://hosting.photobucket.com/bbcfb0d4-be20-44a0-94dc-65bff8947cf2/e1809f3a-479d-4f22-a564-3c2085abd0d5.png)
+![Screenshot of the primary chart UI.](https://hosting.photobucket.com/bbcfb0d4-be20-44a0-94dc-65bff8947cf2/20dce6dc-b04b-4968-9371-b8ae1d624f2d.png)
 
 Extracts audio features from `.wav` and `.mp3` files, exporting them as JSON and visualizing track comparisons with a radar chart.
 
